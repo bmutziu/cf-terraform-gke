@@ -40,7 +40,7 @@ variable "billing_account_id" {
 
 variable "k8s_version" {
   type    = string
-  default = "1.18.14-gke.1200"
+  default = "1.19.7-gke.1302"
 }
 
 variable "destroy" {
