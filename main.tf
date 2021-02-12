@@ -21,6 +21,7 @@ resource "google_project_service" "cloud" {
 }
 
 resource "google_container_cluster" "primary" {
+  release_channel          = rapid
   count                    = var.destroy == true ? 0 : 1
   name                     = var.cluster_name
   location                 = var.region
@@ -47,7 +48,7 @@ resource "google_container_node_pool" "primary_nodes" {
       "https://www.googleapis.com/auth/cloud-platform"
     ]
   }
-  autoscaling { 
+  autoscaling {
     min_node_count = var.min_node_count
     max_node_count = var.max_node_count
   }
