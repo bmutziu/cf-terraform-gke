@@ -21,10 +21,12 @@ resource "google_project_service" "cloud" {
 }
 
 resource "google_container_cluster" "primary" {
-  release_channel          = rapid
   count                    = var.destroy == true ? 0 : 1
   name                     = var.cluster_name
   location                 = var.region
+  release_channel {
+    channel = "RAPID"
+  }
   min_master_version       = var.k8s_version
   remove_default_node_pool = true
   initial_node_count       = 1
